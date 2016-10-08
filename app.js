@@ -107,6 +107,7 @@
             var code = evt.keyCode || evt.which;
             if (code == 17) {
                 pauseKeyHeld = true;
+				$("#app-info-frozen").text("CHAT FROZEN");
             }
         }
     );
@@ -115,6 +116,7 @@
             var code = evt.keyCode || evt.which;
             if (code == 17) {
                 pauseKeyHeld = false;
+				$("#app-info-frozen").text("");
                 var element = $('#app-messages');
                 element.animate({ "scrollTop": element[0].scrollHeight }, 200);
                 scrollPaused = false;
@@ -228,7 +230,7 @@
             }
 
             $.ajax({
-                url: 'https://twitchstuff.3v.fi/chat/api/global/display?language=en',
+                url: 'https://badges.twitch.tv/v1/badges/global/display?callback=?',
                 success: function (data) {
                     Chat.badges = data.badge_sets;
                 },
@@ -236,7 +238,7 @@
             }).always(function () {
                 auth.apiRequest("kraken/channels/" + _this.channel, null, function (ch) {
                     $.ajax({
-                        url: 'https://twitchstuff.3v.fi/chat/api/channels/' + ch._id + '/display?language=en',
+                        url: 'https://badges.twitch.tv/v1/badges/channels/' + ch._id + '/display?callback=?',
                         success: function (data) {
                             Chat.badges.subscriber = data.badge_sets.subscriber;
                         },
