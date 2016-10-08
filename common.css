@@ -210,3 +210,6 @@ span.modicon#ban {
 .cheer-purple {
     color: #6441a5;
 }
+#app-info-frozen {
+  color: yellow;
+}
